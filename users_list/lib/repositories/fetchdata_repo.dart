@@ -4,11 +4,11 @@ import 'package:http/http.dart';
 import 'package:users_list/models/user_model.dart';
 
 class UsersRepository {
-  String allUsersUrl = "https://reqres.in/api/users?page=2";
+  String allUsersUrl = "https://reqres.in/api/users?page=";
 
-  Future<List<ListUserModel>> fetchUsers() async {
+  Future<List<ListUserModel>> fetchUsers(int page) async {
     try {
-      Response response = await get(Uri.parse(allUsersUrl));
+      Response response = await get(Uri.parse('$allUsersUrl$page'));
 
       if (response.statusCode == 200) {
         final List result = jsonDecode(response.body)['data'];

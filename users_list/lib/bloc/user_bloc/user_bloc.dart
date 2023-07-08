@@ -6,13 +6,15 @@ import '../../repositories/fetchdata_repo.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UsersRepository _usersRepository;
+  int page = 0;
 
   UserBloc(this._usersRepository) : super(UserLoadingState()) {
     on<UserLoadingEvent>(
       (event, emit) async {
         emit(UserLoadingState());
         try {
-          final users = await _usersRepository.fetchUsers();
+          page++;
+          final users = await _usersRepository.fetchUsers(page);
           emit(UserLoadedState(users));
         } catch (e) {
           emit(UserErrorState(e.toString()));
