@@ -28,9 +28,17 @@ class UserListTile extends StatelessWidget {
                 "https://st4.depositphotos.com/4329009/19956/v/600/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"),
           ),
         ),
-        title: Text(users.firstName ?? 'First name'),
-        subtitle: Text(users.lastName ?? 'Last Name'),
-        trailing: const Icon(Icons.arrow_forward_ios),
+        title: Text(
+          users.firstName ?? 'First name',
+          style: const TextStyle(fontFamily: 'SFPro'),
+        ),
+        subtitle: Text(users.lastName ?? 'Last Name',
+            style: const TextStyle(fontFamily: 'SFPro')),
+        trailing: const Icon(
+          Icons.arrow_forward_ios,
+          size: 20,
+          color: Colors.grey,
+        ),
       ),
     );
   }

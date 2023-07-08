@@ -22,6 +22,7 @@ class UserDetailScreen extends StatelessWidget {
                 width: 200,
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(100)),
+                  border: Border.all(color: Colors.blue, width: 5),
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(user.avatar ??
@@ -35,14 +36,18 @@ class UserDetailScreen extends StatelessWidget {
             ),
             Text(
               '${user.firstName} ${user.lastName}',
-              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'SFPro'),
             ),
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
             Text(
               user.email ?? 'abc@gmail.com',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, fontFamily: 'SFPro'),
             )
           ],
         ),

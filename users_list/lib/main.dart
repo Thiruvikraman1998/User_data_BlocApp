@@ -16,7 +16,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(useMaterial3: true),
+      theme: ThemeData(
+          useMaterial3: true,
+          appBarTheme: AppBarTheme().copyWith(
+              titleTextStyle: const TextStyle(
+                  fontFamily: 'SFPro', color: Colors.black, fontSize: 25))),
       home: RepositoryProvider(
         create: (context) => UsersRepository(),
         child: const Home(),
