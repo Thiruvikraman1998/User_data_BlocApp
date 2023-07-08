@@ -29,6 +29,20 @@ class UserDetailScreen extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Text(
+              '${user.firstName} ${user.lastName}',
+              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              user.email ?? 'abc@gmail.com',
+              style: TextStyle(fontWeight: FontWeight.bold),
             )
           ],
         ),

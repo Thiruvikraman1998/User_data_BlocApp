@@ -6,10 +6,23 @@ import 'package:users_list/bloc/user_bloc/user_event.dart';
 import 'package:users_list/bloc/user_bloc/user_state.dart';
 import 'package:users_list/models/user_model.dart';
 import 'package:users_list/repositories/fetchdata_repo.dart';
-import 'package:users_list/screens/user_detail_screen.dart';
+import 'package:users_list/widgets/list_tile.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final ScrollController _scrollController = ScrollController();
+  var _scrollThreshold = 200.0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,31 +44,11 @@ class Home extends StatelessWidget {
             } else if (state is UserLoadedState) {
               List<ListUserModel> userList = state.users;
               return ListView.builder(
+                physics: BouncingScrollPhysics(),
+                //controller: _scrollController,
                 itemCount: userList.length,
                 itemBuilder: (context, index) {
-                  return Card(
-                    child: ListTile(
-                      onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) =>
-                                UserDetailScreen(user: userList[index]),
-                          ),
-                        );
-                      },
-                      leading: Hero(
-                        tag: 'avatar${userList[index].id}',
-                        child: CircleAvatar(
-                          backgroundImage: NetworkImage(userList[index]
-                                  .avatar ??
-                              "https://st4.depositphotos.com/4329009/19956/v/600/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"),
-                        ),
-                      ),
-                      title: Text(userList[index].firstName ?? 'First name'),
-                      subtitle: Text(userList[index].lastName ?? 'Last Name'),
-                      trailing: const Icon(Icons.arrow_forward_ios),
-                    ),
-                  );
+                  return UserListTile(users: userList[index]);
                 },
               );
             } else if (state is UserErrorState) {
